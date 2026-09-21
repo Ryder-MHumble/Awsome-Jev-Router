@@ -154,7 +154,7 @@ def recommend(counts: Counter[str], evidence: list[dict[str, Any]], practices: l
 def main() -> int:
     parser = argparse.ArgumentParser(description="Offline, privacy-aware Jev practice recommender")
     parser.add_argument("log", type=Path, help="JSONL, JSON export, or plain text agent log")
-    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2], help="Jev Practice Radar repository root")
+    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2], help="Awsome-Jev-Router repository root")
     parser.add_argument("--top", type=int, default=3, help="recommendations per scenario")
     parser.add_argument("--output", type=Path, help="write JSON report to this path")
     args = parser.parse_args()
