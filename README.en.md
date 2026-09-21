@@ -1,32 +1,27 @@
-# Jev Practice Radar
+# Awsome-Jev-Router
 
-**Language:** English (current) · [中文](README.md)
+> **Route repeated Agent judgments to reusable Jev practices.**
 
-Jev Practice Radar turns public Jev/System One practices into a searchable catalog and provides a mountable local skill. The skill reads an agent's local logs, identifies recurring task patterns, and maps them to Jev practices that may be reusable.
+[![Jev](https://img.shields.io/badge/TypeSafe-Jev-0d9488)](https://typesafe.ai/blog/introducing-system-one-models-and-jev)
+[![Catalog](https://img.shields.io/badge/catalog-14%20categories-2563eb)](categories/)
+[![Skill](https://img.shields.io/badge/skill-local--first-16a34a)](skill/jev-practice-recommender/)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
-It answers a concrete question beyond bookmarking links: when an agent repeatedly handles routing, permission checks, quality scoring, context compaction, or data curation, which Jev patterns are relevant, why did they match, and which redacted log lines support the recommendation?
+[中文](README.md) · **English** · [Catalog](#catalog) · [Contributing](CONTRIBUTING.en.md)
 
-## Capabilities
+Awsome-Jev-Router has two layers: a catalog of public Jev/System One projects, SDKs, engineering patterns, and practice discussions; and a local skill that turns recurring Agent-log tasks into traceable practice candidates. Use it to find an existing implementation before choosing a model, routing a skill, adding a tool gate, or designing a workflow.
+
+## In 30 seconds
 
 ```text
-agent logs
-    ↓ local parsing and redaction
-recurring behaviors / task patterns
-    ↓ transparent rule matching
-Jev practice catalog
-    ↓ source and log evidence
-reviewable practice recommendations
+Agent logs → local redaction → recurring scenarios → Jev candidates → sources and evidence
 ```
 
-- **Mountable:** `skill/jev-practice-recommender/` is an independent skill that can be copied into Codex, Claude Code, Pi, or a custom agent skill directory.
-- **Local-first:** log analysis is offline by default. API keys, bearer tokens, email addresses, phone numbers, and common absolute paths are redacted before output.
-- **Explainable:** each recommendation includes frequency, trigger signals, a redacted excerpt, line number, source category, and original URL.
-- **Replaceable:** the baseline uses the standard library and transparent keyword rules. An offline semantic adapter can be added later without bypassing redaction or source review.
-- **Evidence-led:** category pages are indexes for further investigation. They are not quality, security, stability, or license endorsements.
+Jev takes state plus typed questions and returns structured judgments such as `Choice`, `Score`, and `Noul`. Awsome-Jev-Router leaves thresholds, escalation, and side effects in application code: a recommendation is a lead to review, never an automatic action.
 
 ## Quick start
 
-Run this from the repository root:
+Run the local skill from the repository root:
 
 ```bash
 python3 skill/jev-practice-recommender/recommend.py \
@@ -34,55 +29,61 @@ python3 skill/jev-practice-recommender/recommend.py \
   --output /tmp/jev-recommendations.json
 ```
 
-The input accepts JSONL, JSON exports, and plain text logs. The output contains scenario frequency, candidate practices, and an evidence trail.
+The input accepts JSONL, JSON exports, and plain text logs. The output contains scenario frequency, trigger signals, redacted excerpts, line numbers, candidate projects, and source files.
 
-See the [English skill guide](skill/jev-practice-recommender/SKILL.en.md) for the input contract, privacy boundary, and extension points. The local demo does not access the network or execute a recommendation.
+Copy `skill/jev-practice-recommender/` into a Codex, Claude Code, Pi, or custom Agent skill directory to mount it. Logs are read locally; the default run does not make network requests, install, or execute recommended projects.
 
-## Practice catalog
+Read the input contract and privacy boundary in [`SKILL.en.md`](skill/jev-practice-recommender/SKILL.en.md) · [中文 skill guide](skill/jev-practice-recommender/SKILL.md)
 
-The English category pages are kept in `categories/`. Chinese readers can use the translated mirrors in [`categories/zh-CN/`](categories/zh-CN/).
+## Catalog
 
-- [Classification and routing](categories/classification-routing.md)
-- [Verification and guardrails](categories/verification-guardrails.md)
-- [Scoring and ranking](categories/scoring-ranking.md)
-- [Agent decisions](categories/agent-decisions.md)
-- [Data labeling and curation](categories/data-labeling-curation.md)
-- [Evaluation and benchmarking](categories/evaluation-benchmarking.md)
-- [Calibration and research](categories/calibration-research.md)
-- [Infrastructure and integrations](categories/infra-sdks-integrations.md)
-- [Game and simulation](categories/game-simulation.md)
-- [Finance and trading](categories/finance-trading.md)
-- [Compliance and legal](categories/compliance-legal.md)
-- [Content moderation](categories/content-moderation.md)
-- [Scientific pipelines](categories/scientific-pipelines.md)
-- [Related practices and discussions](categories/related-practices-discussions.md)
+| Tag | Entries* | Use it for |
+| --- | ---: | --- |
+| [Classification & Routing](categories/classification-routing.md) | 24 | Intent, request, skill, model, and traffic routing |
+| [Verification & Guardrails](categories/verification-guardrails.md) | 22 | Tool calls, permissions, code, and supply-chain checks |
+| [Scoring & Ranking](categories/scoring-ranking.md) | 20 | Quality, relevance, risk, and candidate ranking |
+| [Agent Decisions](categories/agent-decisions.md) | 31 | Browser, context, action, and workflow decisions |
+| [Data Labeling & Curation](categories/data-labeling-curation.md) | 5 | Document, dataset, and content labeling |
+| [Evaluation & Benchmarking](categories/evaluation-benchmarking.md) | 16 | Evaluation, regression, and reproducible experiments |
+| [Calibration & Research](categories/calibration-research.md) | 22 | Confidence, latency, model, and method research |
+| [Infrastructure, SDKs & Integrations](categories/infra-sdks-integrations.md) | 43 | APIs, gateways, SDKs, deployment, and adapters |
+| [Game & Simulation](categories/game-simulation.md) | 10 | Games, world models, and simulated environments |
+| [Finance & Trading](categories/finance-trading.md) | 4 | Trading, portfolio, and risk decisions |
+| [Compliance & Legal](categories/compliance-legal.md) | 1 | Compliance, contracts, and legal workflows |
+| [Content Moderation](categories/content-moderation.md) | 4 | Spam, ads, abuse, and safety judgments |
+| [Scientific Pipelines](categories/scientific-pipelines.md) | 0 | Scientific data and experiment workflows |
+| [Related Practices & Discussions](categories/related-practices-discussions.md) | 54 | X, blogs, interviews, and public signals without a standalone project |
 
-Entries come from public pages. Project names, authors, organizations, and links belong to their original publishers. An entry means “review this source,” not “adopt or endorse it.”
+\* Counts reflect the current category pages. Each project has one primary category. Chinese mirrors are in [`categories/zh-CN/`](categories/zh-CN/).
+
+## Choose by problem
+
+| Your question | Start with |
+| --- | --- |
+| “Which model or skill should handle this request?” | Classification & Routing; Agent Decisions |
+| “Should this tool call be allowed?” | Verification & Guardrails; Compliance & Legal |
+| “Which candidate is more relevant or safer?” | Scoring & Ranking; Evaluation & Benchmarking |
+| “How do I connect Jev or swap a provider?” | Infrastructure, SDKs & Integrations |
+| “What has been built or discussed in public?” | Related Practices & Discussions; Research sources |
 
 ## Research sources
 
-[research/sources.en.md](research/sources.en.md) records official material, open-source projects, technical writing, and public social discussions. Each record includes a retrieval date, link, claim summary, reusable pattern, and evidence strength. The research chapter is maintained separately from the category index so that public discussion can be distinguished from runnable implementation.
+- [Research sources (English)](research/sources.en.md)
+- [研究资料（中文）](research/sources.md)
+- [Source policy](docs/source-policy.en.md) · [Attribution](ATTRIBUTION.en.md)
 
-## Why Jev
+The research chapter records official material, open-source projects, technical writing, and public social discussions. It distinguishes runnable implementations, public opinions, and leads that still need verification. Prices, model aliases, performance, and platform capabilities change; inspect the original source before adoption.
 
-Jev/System One is designed for typed decisions: given unstructured state and a typed question, it returns a typed result such as `Choice`, `Score`, or `Boolean`, often with confidence. Application code owns thresholds, abstention, escalation, and side effects. This makes Jev useful for narrow, repeated, auditable judgments inside an agent.
+## Inclusion rules
 
-This project applies that idea at two levels: the catalog shows reusable decision patterns, while the log skill discovers which recurring user tasks may benefit from typed decisions. Recommendations remain candidates. Users must inspect source code, tests, data claims, and license terms before adoption.
+- The source is public, citable, and explicitly uses Jev or System One typed decisions.
+- The summary states the concrete scenario, judgment type, and implementation value.
+- Pure opinion, unverifiable promotion, and projects that only resemble Jev stay out of practice entries; they may appear in discussions with evidence strength labeled.
+- Inclusion is not an endorsement of code quality, security, stability, performance, or license suitability.
 
-## Privacy and safety
+Found an outdated, duplicate, or weakly supported entry? Open an issue or pull request with the original link and verification evidence. See [Contributing](CONTRIBUTING.en.md).
 
-- Logs are read locally; the script does not make network requests by default.
-- Redaction is a heuristic baseline, not a complete DLP system. Clean custom credentials, binary logs, and team-specific fields offline first.
-- Raw logs are not written to the repository. Output keeps only bounded redacted excerpts and line numbers.
-- The skill never installs, invokes, or executes a recommended project and never decides whether a tool call is allowed.
-
-## Sources and license
-
-This is an independent derivative project built from public sources with a new local log-analysis skill. See [docs/source-policy.en.md](docs/source-policy.en.md) and [ATTRIBUTION.en.md](ATTRIBUTION.en.md) for source and verification rules. Linked third-party projects keep their own licenses.
-
-New code and documentation are MIT licensed; see [LICENSE](LICENSE).
-
-## Development and verification
+## Verification
 
 ```bash
 python3 -m py_compile skill/jev-practice-recommender/recommend.py
@@ -92,4 +93,6 @@ python3 skill/jev-practice-recommender/recommend.py \
 git diff --check
 ```
 
-Before submitting, inspect `privacy.network`, redaction output, and the evidence chain. Do not commit real logs, tokens, or personal information.
+## License
+
+New code and documentation are MIT licensed; see [LICENSE](LICENSE). Third-party projects, names, authors, links, and content in the catalog remain subject to their own licenses and rights.
