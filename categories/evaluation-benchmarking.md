@@ -1,5 +1,7 @@
 # Evaluation & Benchmarking
 
+**Language:** English (current) · [中文](zh-CN/evaluation-benchmarking.md)
+
 Use this category for programs where Jev judges model or system outputs — eval harnesses, LLM-as-judge replacements, benchmark scorers, regression gates.
 
 ## Submission format

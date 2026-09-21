@@ -1,5 +1,7 @@
 # Scoring & Ranking
 
+**Language:** English (current) · [中文](zh-CN/scoring-ranking.md)
+
 Use this category for programs where Jev produces rubric scores, quality grades, or relevance and priority orderings that drive a downstream decision.
 
 ## Submission format

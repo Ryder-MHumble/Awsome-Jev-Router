@@ -1,5 +1,7 @@
 # Jev 实践导航
 
+**语言 / Language:** 中文（当前） · [English](README.en.md)
+
 Jev 实践导航（`jev-practice-radar`）把公开的 Jev/System One 实践整理成可检索目录，并提供一个可以挂载到 agent 的本地 skill：读取 agent 日志，识别用户反复出现的任务场景，再把这些场景映射到已有的 Jev 实践。
 
 它解决的是一个比“收藏链接”更具体的问题：当一个 agent 反复遇到路由、权限判断、质量评分、上下文压缩或数据整理任务时，用户能看到哪些成熟的 Jev 模式可以复用，为什么匹配，以及推荐是由哪几行脱敏日志触发的。
@@ -52,6 +54,8 @@ python3 skill/jev-practice-recommender/recommend.py \
 完整输入约定、隐私边界和扩展方式见 [skill/jev-practice-recommender/SKILL.md](skill/jev-practice-recommender/SKILL.md)。本地演示不访问网络，也不会自动执行任何推荐。
 
 ## 实践目录
+
+英文条目与中文入口：[`categories/`](categories/) · [中文分类入口](categories/zh-CN/README.md)
 
 `categories/` 保留公开项目、工程实践和讨论线索，并按 Jev 实际做出的决策分类：
 

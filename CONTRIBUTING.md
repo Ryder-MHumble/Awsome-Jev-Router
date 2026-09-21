@@ -1,5 +1,7 @@
 # 参与贡献
 
+**语言 / Language:** 中文（当前） · [English](CONTRIBUTING.en.md)
+
 欢迎补充公开、可复核的 Jev/System One 实践，或改进日志 skill。
 
 ## 条目要求

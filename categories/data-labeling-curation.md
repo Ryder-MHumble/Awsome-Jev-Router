@@ -1,5 +1,7 @@
 # Data Labeling & Curation
 
+**Language:** English (current) · [中文](zh-CN/data-labeling-curation.md)
+
 Use this category for programs where Jev annotates, filters, deduplicates, or triages data at scale, replacing slower or costlier human and LLM labeling steps.
 
 ## Submission format

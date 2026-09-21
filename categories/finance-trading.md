@@ -1,5 +1,7 @@
 # Finance & Trading
 
+**Language:** English (current) · [中文](zh-CN/finance-trading.md)
+
 Use this category for programs where Jev makes trading, investment, or market-judgment decisions.
 
 ## Submission format

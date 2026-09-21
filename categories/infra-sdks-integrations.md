@@ -1,5 +1,7 @@
 # Infra / SDKs / Integrations
 
+**Language:** English (current) · [中文](zh-CN/infra-sdks-integrations.md)
+
 Use this category for ecosystem tooling built around Jev — SDKs, wrappers, gateways, framework adapters, evaluation scaffolds, local ports.
 
 ## Submission format

@@ -1,5 +1,9 @@
 # Jev Practice Recommender Skill
 
+**语言 / Language:** 中文（当前） · [English](README.en.md)
+
+语言：中文 | [English](README.en.md)
+
 一个离线 skill：从 agent 日志中识别重复任务，脱敏后将高频场景映射到本仓库中的 Jev 实践，并保留证据链。
 
 ## 本地演示

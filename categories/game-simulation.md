@@ -1,5 +1,7 @@
 # Game & Simulation
 
+**Language:** English (current) · [中文](zh-CN/game-simulation.md)
+
 Use this category for decisions inside games, simulations, or interactive environments.
 
 ## Submission format

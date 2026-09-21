@@ -1,5 +1,7 @@
 # Agent Decisions
 
+**Language:** English (current) · [中文](zh-CN/agent-decisions.md)
+
 Use this category for programs where Jev supplies the decision step inside an agentic loop — tool choice, escalation, retry or stop, next-action selection.
 
 ## Submission format

@@ -1,5 +1,7 @@
 # Calibration & Research
 
+**Language:** English (current) · [中文](zh-CN/calibration-research.md)
+
 Use this category for work that studies or exploits Jev's calibrated confidence — RLCD-style training, probability quality, threshold selection, uncertainty analysis.
 
 ## Submission format

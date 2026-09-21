@@ -1,5 +1,7 @@
 # Content Moderation
 
+**Language:** English (current) · [中文](zh-CN/content-moderation.md)
+
 Use this category for policy and abuse decisions over user-generated content at volume.
 
 ## Submission format

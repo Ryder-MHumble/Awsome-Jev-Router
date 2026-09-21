@@ -1,5 +1,7 @@
 # Classification & Routing
 
+**Language:** English (current) · [中文](zh-CN/classification-routing.md)
+
 Use this category for programs where Jev sorts incoming state into categories or picks the next destination — tickets, intents, alerts, documents, or traffic.
 
 ## Submission format

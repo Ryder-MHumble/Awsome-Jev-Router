@@ -1,5 +1,7 @@
 # Compliance & Legal
 
+**Language:** English (current) · [中文](zh-CN/compliance-legal.md)
+
 Use this category for regulatory, contract, or policy-conformance decisions that must be auditable.
 
 ## Submission format

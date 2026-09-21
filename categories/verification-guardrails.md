@@ -1,5 +1,7 @@
 # Verification & Guardrails
 
+**Language:** English (current) · [中文](zh-CN/verification-guardrails.md)
+
 Use this category for programs where Jev gates output — verifying claims, reviewing diffs, checking generated content, or blocking unsafe agent actions before they ship.
 
 ## Submission format

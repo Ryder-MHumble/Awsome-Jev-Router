@@ -1,5 +1,9 @@
 # Jev Practice Recommender
 
+**语言 / Language:** 中文（当前） · [English](SKILL.en.md)
+
+语言：中文 | [English](SKILL.en.md)
+
 把 agent 的本地运行日志转换成可审计的 Jev 实践推荐。它适合作为一个 skill 挂载在 Codex、Claude Code、Pi 或自建 agent 上：先总结用户反复出现的任务场景，再从本仓库的 `categories/*.md` 中给出可复用的实践。
 
 ## 能力边界

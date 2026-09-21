@@ -1,5 +1,7 @@
 # Related Practices / Discussions
 
+**Language:** English (current) · [中文](zh-CN/related-practices-discussions.md)
+
 Use this category for public discussion evidence — X threads, Reddit posts, Hacker News threads, interviews, blog commentary — that describes real Jev usage or emerging patterns but has no standalone repo or case page yet.
 
 ## Submission format
