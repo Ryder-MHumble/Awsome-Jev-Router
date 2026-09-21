@@ -1,0 +1,4 @@
+{"role":"user","content":"请把 /Users/demo/project 的 agent tool calls 做安全审核，token=sk-demo-12345678901234567890"}
+{"role":"assistant","content":"我会先验证权限和危险命令，再决定是否允许工具调用。联系 maintainer@example.com。"}
+{"role":"user","content":"每天把 support 邮件按 intent 路由到不同工作流，并对低置信度项人工复核。"}
+{"role":"assistant","content":"记录分类与 routing 场景，后续可以复用 typed decision。"}

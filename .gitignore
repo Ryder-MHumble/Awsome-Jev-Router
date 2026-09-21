@@ -1,0 +1,12 @@
+.DS_Store
+logs/
+*.jsonl
+*.log
+*.jsonl.gz
+.pi/
+!skill/jev-practice-recommender/examples/sample-agent.jsonl
+node_modules/
+__pycache__/
+*.pyc
+*.env
+AUTOMATION.local.md
