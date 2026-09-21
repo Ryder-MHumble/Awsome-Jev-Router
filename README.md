@@ -1,6 +1,6 @@
 # Jev 实践导航
 
-Jev 实践导航（仓库名建议：`jev-practice-radar`）把公开的 Jev/System One 实践整理成可检索目录，并提供一个可以挂载到 agent 的本地 skill：读取 agent 日志，识别用户反复出现的任务场景，再把这些场景映射到已有的 Jev 实践。
+Jev 实践导航（`jev-practice-radar`）把公开的 Jev/System One 实践整理成可检索目录，并提供一个可以挂载到 agent 的本地 skill：读取 agent 日志，识别用户反复出现的任务场景，再把这些场景映射到已有的 Jev 实践。
 
 它解决的是一个比“收藏链接”更具体的问题：当一个 agent 反复遇到路由、权限判断、质量评分、上下文压缩或数据整理任务时，用户能看到哪些成熟的 Jev 模式可以复用，为什么匹配，以及推荐是由哪几行脱敏日志触发的。
 
@@ -63,7 +63,7 @@ python3 skill/jev-practice-recommender/recommend.py \
 - [评测与基准](categories/evaluation-benchmarking.md)
 - [校准与研究](categories/calibration-research.md)
 - [基础设施与集成](categories/infra-sdks-integrations.md)
-- [游戏、金融、合规、内容审核与科研流水线](categories/)
+- [游戏与仿真](categories/game-simulation.md)、[金融与交易](categories/finance-trading.md)、[合规与法律](categories/compliance-legal.md)、[内容审核](categories/content-moderation.md)、[科研流水线](categories/scientific-pipelines.md)
 - [相关实践与讨论](categories/related-practices-discussions.md)
 
 目录条目来自公开页面；项目名称、作者/组织和链接归原发布者所有。条目只说明“值得进一步核查”，不构成推荐或背书。
