@@ -1,27 +1,45 @@
 # Awsome-Jev-Router
 
-> **把 Agent 日志里的重复判断，路由到可复用的 Jev 实践。**
+> **Route repeated Agent judgments to reusable Jev practices.**
 
 [![Jev](https://img.shields.io/badge/TypeSafe-Jev-0d9488)](https://typesafe.ai/blog/introducing-system-one-models-and-jev)
-[![目录](https://img.shields.io/badge/目录-14%20类-2563eb)](categories/)
-[![Skill](https://img.shields.io/badge/Skill-本地优先-16a34a)](skill/jev-practice-recommender/)
+[![Catalog](https://img.shields.io/badge/catalog-14%20categories-2563eb)](categories/)
+[![Offline-first](https://img.shields.io/badge/skill-offline--first-16a34a)](skill/jev-practice-recommender/)
 [![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
-**中文**（当前） · [English](README.en.md) · [目录](#目录) · [贡献](CONTRIBUTING.md)
+[**English**](README.md) · [中文](README.zh-CN.md) · [Catalog](#catalog) · [Contributing](CONTRIBUTING.en.md)
 
-Awsome-Jev-Router 是一个双层目录：一层收录公开的 Jev/System One 项目、SDK、工程模式和实践讨论；另一层把本地 Agent 日志归纳为高频任务，并给出可追溯的实践候选。适合在选择模型、路由技能、验证工具调用或设计工作流之前，先找到已有实现，再决定是否复用。
+Awsome-Jev-Router is a searchable Jev practice catalog plus a local Agent skill. It maps recurring decision points in redacted logs to public projects, implementation notes, and source evidence. Use it to choose what to prototype; it does not run third-party projects or change your Agent automatically.
 
-## 30 秒了解
+## In 30 seconds
+
+### What is Jev?
+
+Jev is TypeSafe AI's first **System One Model**: a model for fast, structured decisions that software can use directly. Give it state and a typed question; it returns a constrained result such as `Choice`, `Score`, or `Noul`, rather than a long chat response.
+
+Read the [official launch post](https://typesafe.ai/blog/introducing-system-one-models-and-jev) for the design, API examples, and benchmark claims. Jev is early access; performance numbers in that post are TypeSafe's claims, not an independent benchmark from this repository.
+
+### Why is Jev getting attention?
+
+Agent workflows often need a small, repeatable decision instead of another long-form generation call. Jev's early-access release, public SDK and skill ecosystem, and community experiments around routing, tool safety, context compaction, and browser actions made the idea easy to try and discuss.
+
+That attention is not proof that Jev fits every workflow. Test whether a decision is stable enough to type, cheap enough to evaluate frequently, and safe to review when confidence is low.
+
+| A long-form LLM call | A Jev-style decision point |
+| --- | --- |
+| Generates text or code that the caller must parse and validate | Returns a constrained value the caller can branch on |
+| Useful for open-ended reasoning and synthesis | Useful for repeated, bounded choices in a workflow |
+| Best when the output is inherently textual | Can reduce general-model work when the choice is narrow |
 
 ```text
-Agent 日志 → 本地脱敏 → 高频场景 → Jev 实践候选 → 来源与证据
+Agent logs → local redaction → recurring scenarios → Jev candidates → sources and evidence
 ```
 
-Jev 接收状态和类型化问题，返回 `Choice`、`Score`、`Noul` 等结构化判断。Awsome-Jev-Router 把阈值、升级和副作用控制留在业务代码中：推荐是线索，不是自动执行。
+The project keeps thresholds, escalation, and side effects in application code: a recommendation is a lead to review, never an automatic action.
 
-## 快速开始
+## Quick start
 
-从仓库根目录运行本地 skill：
+Run the local skill from the repository root:
 
 ```bash
 python3 skill/jev-practice-recommender/recommend.py \
@@ -29,84 +47,84 @@ python3 skill/jev-practice-recommender/recommend.py \
   --output /tmp/jev-recommendations.json
 ```
 
-支持 JSONL、JSON 导出和普通文本日志。输出包含场景频次、匹配信号、脱敏摘录、行号、候选项目及来源文件。
+The input accepts JSONL, JSON exports, and plain text logs. The output contains scenario frequency, trigger signals, redacted excerpts, line numbers, candidate projects, and source files.
 
-把 `skill/jev-practice-recommender/` 复制到 Codex、Claude Code、Pi 或自建 Agent 的 skill 目录即可挂载。输入日志只在本机读取，默认不联网、不安装、不执行被推荐项目。
+Copy `skill/jev-practice-recommender/` into a Codex, Claude Code, Pi, or custom Agent skill directory to mount it. Logs are read locally; the default run does not make network requests, install, or execute recommended projects.
 
-详细输入格式与隐私边界：[`SKILL.md`](skill/jev-practice-recommender/SKILL.md) · [English skill guide](skill/jev-practice-recommender/SKILL.en.md)
+Read the input contract and privacy boundary in [`SKILL.en.md`](skill/jev-practice-recommender/SKILL.en.md) · [中文 skill guide](skill/jev-practice-recommender/SKILL.md)
 
-## 精选实践
+## Featured practices
 
-完整目录目前有 256 个条目；首页每类选一个最能说明 Jev 用法的代表项目，完整清单仍在分类页。
+The full catalog currently has 256 entries. The home page highlights one representative project per category; category pages keep the complete list.
 
-| 分类 | 项目 | Jev 做什么 | 适合借鉴 |
+| Category | Project | What Jev decides | Borrow it for |
 | --- | --- | --- | --- |
-| 分类与路由 | [jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage) | 对 Loki 日志执行 `Noul`、`Score`、`Choice`，映射为 suppress/watch/review/notify/page，低置信度转 review。 | 把日志变成分级处置，而不是只生成摘要。 |
-| 验证与护栏 | [jev-axi](https://github.com/shiftynick/jev-axi) | 在 PreToolUse 阶段评估命令的破坏性、外泄、远程执行和安全弱化。 | 在 Agent 产生副作用前增加安全门。 |
-| 评分与排序 | [citation-verifier](https://github.com/MarissaFamularo/citation-verifier) | Claude 找证据，Jev 评分论文是否支持句子，人类保留最终裁决。 | 将机器评分与人工复核拆开。 |
-| Agent 决策 | [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) | 根据浏览器状态和候选控件选择下一步动作，仅在需要输入文本时调用语言模型。 | 让 LLM 负责理解，Jev 负责高频动作选择。 |
-| 数据标注与整理 | [jev-align](https://github.com/sutro-sh/jev-align) | 对 CSV、Parquet、JSONL 行作类型化判断，把歧义样本交给人并用修正标签优化定义。 | 构建可审计的人机协同标注。 |
-| 评测与基准 | [jevcal](https://github.com/abhixhek/jevcal) | 在标注集上拟合置信度阈值，用留出集验证，阈值失效时让 CI 失败。 | 把低置信升级规则变成回归测试。 |
-| 校准与研究 | [Laya](https://github.com/NandhaKishorM/laya) | 单次前向输出 `Choice`、`Score`、`Noul` 概率。 | 本地研究低延迟、隐私和离线决策模型。 |
-| 基础设施、SDK 与集成 | [typesafe-ai/skills](https://github.com/typesafe-ai/skills) | 通过可安装 skill 教 Agent 何时把判断交给 Jev。 | 把 Jev 能力挂载到现有 Agent。 |
-| 游戏与仿真 | [jev-plays-pokemon-red](https://github.com/valentynkit/jev-plays-pokemon-red) | 确定性代码负责路线和算术，Jev 只在分支和战斗节点选择，并用 Brier 评分。 | 将模型限制在可验证的小决策点。 |
-| 金融与交易 | [Jev X Sentiment Analysis](https://github.com/brainstormity/Jev-X-Sentiment-Analysis) | 将去重后的推文证据转为入场区间、止损和目标决策卡，不直接交易。 | 把社交信号变成可审阅建议。 |
-| 合规与法律 | [LegalForecast-MTD](https://github.com/johnhughes3/LegalForecastBench) | 预测驳回动议结果，并用 micro-Brier 评估概率质量。 | 把法律建议与不确定性分开。 |
-| 内容审核 | [mastra-jev-moderation](https://github.com/CodeAlive-AI/mastra-jev-moderation) | 一次请求判断是否拦截及违规类别，并用超时、熔断器和阈值控制风险。 | 构建低延迟、可回退的审核链路。 |
-| 科研流水线 | 暂无核心条目 | 当前没有直接相关的实验门控或科学结果验证项目。 | 保持空缺，避免用不相关项目填充。 |
-| 相关实践与讨论 | [Jev is a really smart switch statement](https://x.com/NathanFlurry/status/2100036101809619314) | 将 Jev 解释为输入上下文、输出受约束分支的决策层。 | 快速理解 Jev 与聊天模型的边界。 |
+| Classification & Routing | [jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage) | Runs `Noul`, `Score`, and `Choice` over Loki logs and maps them to suppress/watch/review/notify/page, sending low confidence to review. | Turn logs into tiered action instead of summaries. |
+| Verification & Guardrails | [jev-axi](https://github.com/shiftynick/jev-axi) | Scores shell commands for destructiveness, exfiltration, remote execution, and security weakening before tools run. | Add a safety gate before Agent side effects. |
+| Scoring & Ranking | [citation-verifier](https://github.com/MarissaFamularo/citation-verifier) | Claude locates evidence, Jev scores whether a paper supports a sentence, and a human keeps the final call. | Separate machine scoring from human review. |
+| Agent Decisions | [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) | Picks the next browser action and element from state, calling a language model only when text must be typed. | Let the LLM understand and Jev choose frequent actions. |
+| Data Labeling & Curation | [jev-align](https://github.com/sutro-sh/jev-align) | Makes typed judgments over CSV, Parquet, and JSONL rows, sends ambiguous cases to humans, and improves the saved definition from corrections. | Build auditable human-in-the-loop labeling. |
+| Evaluation & Benchmarking | [jevcal](https://github.com/abhixhek/jevcal) | Fits confidence thresholds on labeled data, validates on a holdout set, and fails CI when model changes invalidate them. | Turn escalation rules into regression tests. |
+| Calibration & Research | [Laya](https://github.com/NandhaKishorM/laya) | Emits `Choice`, `Score`, and `Noul` probabilities in one forward pass. | Study low-latency, private, offline decision models. |
+| Infrastructure, SDKs & Integrations | [typesafe-ai/skills](https://github.com/typesafe-ai/skills) | Teaches an Agent through an installable skill when to hand a judgment to Jev. | Mount Jev into an existing Agent. |
+| Game & Simulation | [jev-plays-pokemon-red](https://github.com/valentynkit/jev-plays-pokemon-red) | Keeps route planning and arithmetic deterministic; Jev chooses only at branches and battles, scored with Brier metrics. | Limit the model to small, measurable decisions. |
+| Finance & Trading | [Jev X Sentiment Analysis](https://github.com/brainstormity/Jev-X-Sentiment-Analysis) | Turns deduplicated post evidence into an entry-range, stop-loss, and target decision card without trading directly. | Convert social signals into reviewable advice. |
+| Compliance & Legal | [LegalForecast-MTD](https://github.com/johnhughes3/LegalForecastBench) | Forecasts motion-to-dismiss outcomes and evaluates probability quality with micro-Brier metrics. | Separate legal advice from uncertainty. |
+| Content Moderation | [mastra-jev-moderation](https://github.com/CodeAlive-AI/mastra-jev-moderation) | Decides whether to block and which category applies, with timeouts, circuit breakers, and thresholds. | Build a low-latency moderation path with fallback behavior. |
+| Scientific Pipelines | No core entry yet | There is no direct experiment-gating or scientific-result validation project in the catalog yet. | Keep the gap visible instead of padding the list. |
+| Related Practices & Discussions | [Jev is a really smart switch statement](https://x.com/NathanFlurry/status/2100036101809619314) | Frames Jev as a decision layer that maps context to constrained branches. | Get the Jev-versus-chat boundary quickly. |
 
-每个条目都说明“Jev 判断什么”和“代码负责什么”；更多项目、作者和来源见对应分类页与 [研究资料](research/sources.md)。
+Each row answers “what does Jev decide?” and “what does the surrounding code do?” See the category pages and [research sources](research/sources.en.md) for more projects, authors, and evidence.
 
-## 目录
+## Catalog
 
-| 标签 | 条目* | 适合查找 |
+| Tag | Entries* | Use it for |
 | --- | ---: | --- |
-| [分类与路由](categories/classification-routing.md) | 24 | 意图、请求、技能、模型和流量路由 |
-| [验证与护栏](categories/verification-guardrails.md) | 22 | 工具调用、权限、代码与供应链检查 |
-| [评分与排序](categories/scoring-ranking.md) | 20 | 质量、相关性、风险和候选排序 |
-| [Agent 决策](categories/agent-decisions.md) | 31 | 浏览器、上下文、动作和工作流决策 |
-| [数据标注与整理](categories/data-labeling-curation.md) | 5 | 文档、数据集和内容标注 |
-| [评测与基准](categories/evaluation-benchmarking.md) | 16 | 评测、回归、可复现实验 |
-| [校准与研究](categories/calibration-research.md) | 22 | 置信度、延迟、模型和方法研究 |
-| [基础设施、SDK 与集成](categories/infra-sdks-integrations.md) | 43 | API、网关、SDK、部署与适配器 |
-| [游戏与仿真](categories/game-simulation.md) | 10 | 游戏、世界模型和模拟环境 |
-| [金融与交易](categories/finance-trading.md) | 4 | 交易、组合和风控判断 |
-| [合规与法律](categories/compliance-legal.md) | 1 | 合规、合同和法律工作流 |
-| [内容审核](categories/content-moderation.md) | 4 | 垃圾、广告、滥用和安全内容判断 |
-| [科研流水线](categories/scientific-pipelines.md) | 0 | 科研数据与实验流程 |
-| [相关实践与讨论](categories/related-practices-discussions.md) | 54 | X、博客、访谈和暂无代码的公开实践信号 |
+| [Classification & Routing](categories/classification-routing.md) | 24 | Intent, request, skill, model, and traffic routing |
+| [Verification & Guardrails](categories/verification-guardrails.md) | 22 | Tool calls, permissions, code, and supply-chain checks |
+| [Scoring & Ranking](categories/scoring-ranking.md) | 20 | Quality, relevance, risk, and candidate ranking |
+| [Agent Decisions](categories/agent-decisions.md) | 31 | Browser, context, action, and workflow decisions |
+| [Data Labeling & Curation](categories/data-labeling-curation.md) | 5 | Document, dataset, and content labeling |
+| [Evaluation & Benchmarking](categories/evaluation-benchmarking.md) | 16 | Evaluation, regression, and reproducible experiments |
+| [Calibration & Research](categories/calibration-research.md) | 22 | Confidence, latency, model, and method research |
+| [Infrastructure, SDKs & Integrations](categories/infra-sdks-integrations.md) | 43 | APIs, gateways, SDKs, deployment, and adapters |
+| [Game & Simulation](categories/game-simulation.md) | 10 | Games, world models, and simulated environments |
+| [Finance & Trading](categories/finance-trading.md) | 4 | Trading, portfolio, and risk decisions |
+| [Compliance & Legal](categories/compliance-legal.md) | 1 | Compliance, contracts, and legal workflows |
+| [Content Moderation](categories/content-moderation.md) | 4 | Spam, ads, abuse, and safety judgments |
+| [Scientific Pipelines](categories/scientific-pipelines.md) | 0 | Scientific data and experiment workflows |
+| [Related Practices & Discussions](categories/related-practices-discussions.md) | 54 | X, blogs, interviews, and public signals without a standalone project |
 
-\* 条目数按目录页当前内容统计；一个项目只归入一个主分类。中文镜像见 [`categories/zh-CN/`](categories/zh-CN/)。
+\* Counts reflect the current category pages. Each project has one primary category. Chinese mirrors are in [`categories/zh-CN/`](categories/zh-CN/).
 
-## 按问题选择
+## Choose by problem
 
-| 你的问题 | 先看 |
+| Your question | Start with |
 | --- | --- |
-| “这个请求应该交给哪个模型或技能？” | 分类与路由、Agent 决策 |
-| “这个工具调用是否允许执行？” | 验证与护栏、合规与法律 |
-| “候选结果哪个更相关、更安全？” | 评分与排序、评测与基准 |
-| “如何接入 Jev 或替换供应商？” | 基础设施、SDK 与集成 |
-| “有没有真实项目或作者观点？” | 相关实践与讨论、研究资料 |
+| “Which model or skill should handle this request?” | Classification & Routing; Agent Decisions |
+| “Should this tool call be allowed?” | Verification & Guardrails; Compliance & Legal |
+| “Which candidate is more relevant or safer?” | Scoring & Ranking; Evaluation & Benchmarking |
+| “How do I connect Jev or swap a provider?” | Infrastructure, SDKs & Integrations |
+| “What has been built or discussed in public?” | Related Practices & Discussions; Research sources |
 
-## 研究资料
+## Research sources
 
-- [研究资料（中文）](research/sources.md)
 - [Research sources (English)](research/sources.en.md)
-- [来源政策](docs/source-policy.md) · [归属说明](ATTRIBUTION.md)
+- [研究资料（中文）](research/sources.md)
+- [Source policy](docs/source-policy.en.md) · [Attribution](ATTRIBUTION.en.md)
 
-研究记录官方资料、开源项目、技术文章和公开社交讨论，并区分“可运行实现”“公开观点”和“待核查线索”。价格、模型别名、性能和平台能力可能变化；采用前请打开原始来源复核。
+The research chapter records official material, open-source projects, technical writing, and public social discussions. It distinguishes runnable implementations, public opinions, and leads that still need verification. Prices, model aliases, performance, and platform capabilities change; inspect the original source before adoption.
 
-## 收录标准
+## Inclusion rules
 
-- 来源公开、可引用，并明确使用 Jev 或 System One 类型化决策。
-- 摘要说明具体场景、判断类型和实现价值。
-- 纯观点、无法核验的宣传和只在名称上类似 Jev 的项目不进入实践条目，可进入讨论章节并标明证据强度。
-- 收录不代表代码质量、安全性、稳定性、性能或许可证背书。
+- The source is public, citable, and explicitly uses Jev or System One typed decisions.
+- The summary states the concrete scenario, judgment type, and implementation value.
+- Pure opinion, unverifiable promotion, and projects that only resemble Jev stay out of practice entries; they may appear in discussions with evidence strength labeled.
+- Inclusion is not an endorsement of code quality, security, stability, performance, or license suitability.
 
-发现过时、重复或证据不足的条目？请提交 Issue 或 PR，并附原始链接和核验依据。见 [贡献指南](CONTRIBUTING.md)。
+Found an outdated, duplicate, or weakly supported entry? Open an issue or pull request with the original link and verification evidence. See [Contributing](CONTRIBUTING.en.md).
 
-## 验证
+## Verification
 
 ```bash
 python3 -m py_compile skill/jev-practice-recommender/recommend.py
@@ -116,6 +134,6 @@ python3 skill/jev-practice-recommender/recommend.py \
 git diff --check
 ```
 
-## 许可证
+## License
 
-新增代码和文档采用 MIT，见 [LICENSE](LICENSE)。目录中的第三方项目、名称、作者、链接和内容仍受其各自许可证与原发布者权利约束。
+New code and documentation are MIT licensed; see [LICENSE](LICENSE). Third-party projects, names, authors, links, and content in the catalog remain subject to their own licenses and rights.
