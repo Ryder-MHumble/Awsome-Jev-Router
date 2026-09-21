@@ -35,6 +35,29 @@ Copy `skill/jev-practice-recommender/` into a Codex, Claude Code, Pi, or custom 
 
 Read the input contract and privacy boundary in [`SKILL.en.md`](skill/jev-practice-recommender/SKILL.en.md) · [中文 skill guide](skill/jev-practice-recommender/SKILL.md)
 
+## Featured practices
+
+The full catalog currently has 256 entries. The home page highlights one representative project per category; category pages keep the complete list.
+
+| Category | Project | What Jev decides | Borrow it for |
+| --- | --- | --- | --- |
+| Classification & Routing | [jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage) | Runs `Noul`, `Score`, and `Choice` over Loki logs and maps them to suppress/watch/review/notify/page, sending low confidence to review. | Turn logs into tiered action instead of summaries. |
+| Verification & Guardrails | [jev-axi](https://github.com/shiftynick/jev-axi) | Scores shell commands for destructiveness, exfiltration, remote execution, and security weakening before tools run. | Add a safety gate before Agent side effects. |
+| Scoring & Ranking | [citation-verifier](https://github.com/MarissaFamularo/citation-verifier) | Claude locates evidence, Jev scores whether a paper supports a sentence, and a human keeps the final call. | Separate machine scoring from human review. |
+| Agent Decisions | [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) | Picks the next browser action and element from state, calling a language model only when text must be typed. | Let the LLM understand and Jev choose frequent actions. |
+| Data Labeling & Curation | [jev-align](https://github.com/sutro-sh/jev-align) | Makes typed judgments over CSV, Parquet, and JSONL rows, sends ambiguous cases to humans, and improves the saved definition from corrections. | Build auditable human-in-the-loop labeling. |
+| Evaluation & Benchmarking | [jevcal](https://github.com/abhixhek/jevcal) | Fits confidence thresholds on labeled data, validates on a holdout set, and fails CI when model changes invalidate them. | Turn escalation rules into regression tests. |
+| Calibration & Research | [Laya](https://github.com/NandhaKishorM/laya) | Emits `Choice`, `Score`, and `Noul` probabilities in one forward pass. | Study low-latency, private, offline decision models. |
+| Infrastructure, SDKs & Integrations | [typesafe-ai/skills](https://github.com/typesafe-ai/skills) | Teaches an Agent through an installable skill when to hand a judgment to Jev. | Mount Jev into an existing Agent. |
+| Game & Simulation | [jev-plays-pokemon-red](https://github.com/valentynkit/jev-plays-pokemon-red) | Keeps route planning and arithmetic deterministic; Jev chooses only at branches and battles, scored with Brier metrics. | Limit the model to small, measurable decisions. |
+| Finance & Trading | [Jev X Sentiment Analysis](https://github.com/brainstormity/Jev-X-Sentiment-Analysis) | Turns deduplicated post evidence into an entry-range, stop-loss, and target decision card without trading directly. | Convert social signals into reviewable advice. |
+| Compliance & Legal | [LegalForecast-MTD](https://github.com/johnhughes3/LegalForecastBench) | Forecasts motion-to-dismiss outcomes and evaluates probability quality with micro-Brier metrics. | Separate legal advice from uncertainty. |
+| Content Moderation | [mastra-jev-moderation](https://github.com/CodeAlive-AI/mastra-jev-moderation) | Decides whether to block and which category applies, with timeouts, circuit breakers, and thresholds. | Build a low-latency moderation path with fallback behavior. |
+| Scientific Pipelines | No core entry yet | There is no direct experiment-gating or scientific-result validation project in the catalog yet. | Keep the gap visible instead of padding the list. |
+| Related Practices & Discussions | [Jev is a really smart switch statement](https://x.com/NathanFlurry/status/2100036101809619314) | Frames Jev as a decision layer that maps context to constrained branches. | Get the Jev-versus-chat boundary quickly. |
+
+Each row answers “what does Jev decide?” and “what does the surrounding code do?” See the category pages and [research sources](research/sources.en.md) for more projects, authors, and evidence.
+
 ## Catalog
 
 | Tag | Entries* | Use it for |

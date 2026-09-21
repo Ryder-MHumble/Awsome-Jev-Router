@@ -35,6 +35,29 @@ python3 skill/jev-practice-recommender/recommend.py \
 
 详细输入格式与隐私边界：[`SKILL.md`](skill/jev-practice-recommender/SKILL.md) · [English skill guide](skill/jev-practice-recommender/SKILL.en.md)
 
+## 精选实践
+
+完整目录目前有 256 个条目；首页每类选一个最能说明 Jev 用法的代表项目，完整清单仍在分类页。
+
+| 分类 | 项目 | Jev 做什么 | 适合借鉴 |
+| --- | --- | --- | --- |
+| 分类与路由 | [jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage) | 对 Loki 日志执行 `Noul`、`Score`、`Choice`，映射为 suppress/watch/review/notify/page，低置信度转 review。 | 把日志变成分级处置，而不是只生成摘要。 |
+| 验证与护栏 | [jev-axi](https://github.com/shiftynick/jev-axi) | 在 PreToolUse 阶段评估命令的破坏性、外泄、远程执行和安全弱化。 | 在 Agent 产生副作用前增加安全门。 |
+| 评分与排序 | [citation-verifier](https://github.com/MarissaFamularo/citation-verifier) | Claude 找证据，Jev 评分论文是否支持句子，人类保留最终裁决。 | 将机器评分与人工复核拆开。 |
+| Agent 决策 | [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) | 根据浏览器状态和候选控件选择下一步动作，仅在需要输入文本时调用语言模型。 | 让 LLM 负责理解，Jev 负责高频动作选择。 |
+| 数据标注与整理 | [jev-align](https://github.com/sutro-sh/jev-align) | 对 CSV、Parquet、JSONL 行作类型化判断，把歧义样本交给人并用修正标签优化定义。 | 构建可审计的人机协同标注。 |
+| 评测与基准 | [jevcal](https://github.com/abhixhek/jevcal) | 在标注集上拟合置信度阈值，用留出集验证，阈值失效时让 CI 失败。 | 把低置信升级规则变成回归测试。 |
+| 校准与研究 | [Laya](https://github.com/NandhaKishorM/laya) | 单次前向输出 `Choice`、`Score`、`Noul` 概率。 | 本地研究低延迟、隐私和离线决策模型。 |
+| 基础设施、SDK 与集成 | [typesafe-ai/skills](https://github.com/typesafe-ai/skills) | 通过可安装 skill 教 Agent 何时把判断交给 Jev。 | 把 Jev 能力挂载到现有 Agent。 |
+| 游戏与仿真 | [jev-plays-pokemon-red](https://github.com/valentynkit/jev-plays-pokemon-red) | 确定性代码负责路线和算术，Jev 只在分支和战斗节点选择，并用 Brier 评分。 | 将模型限制在可验证的小决策点。 |
+| 金融与交易 | [Jev X Sentiment Analysis](https://github.com/brainstormity/Jev-X-Sentiment-Analysis) | 将去重后的推文证据转为入场区间、止损和目标决策卡，不直接交易。 | 把社交信号变成可审阅建议。 |
+| 合规与法律 | [LegalForecast-MTD](https://github.com/johnhughes3/LegalForecastBench) | 预测驳回动议结果，并用 micro-Brier 评估概率质量。 | 把法律建议与不确定性分开。 |
+| 内容审核 | [mastra-jev-moderation](https://github.com/CodeAlive-AI/mastra-jev-moderation) | 一次请求判断是否拦截及违规类别，并用超时、熔断器和阈值控制风险。 | 构建低延迟、可回退的审核链路。 |
+| 科研流水线 | 暂无核心条目 | 当前没有直接相关的实验门控或科学结果验证项目。 | 保持空缺，避免用不相关项目填充。 |
+| 相关实践与讨论 | [Jev is a really smart switch statement](https://x.com/NathanFlurry/status/2100036101809619314) | 将 Jev 解释为输入上下文、输出受约束分支的决策层。 | 快速理解 Jev 与聊天模型的边界。 |
+
+每个条目都说明“Jev 判断什么”和“代码负责什么”；更多项目、作者和来源见对应分类页与 [研究资料](research/sources.md)。
+
 ## 目录
 
 | 标签 | 条目* | 适合查找 |
